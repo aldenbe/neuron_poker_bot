@@ -20,6 +20,8 @@ from rl.memory import SequentialMemory
 from rl.agents import DQNAgent
 from rl.core import Processor
 
+from pathlib import Path
+
 autoplay = True  # play automatically if played against keras-rl
 
 window_length = 1
@@ -102,11 +104,12 @@ class Player:
 
         # Save the architecture
         dqn_json = self.model.to_json()
-        with open("dqn_{}_json.json".format(env_name), "w") as json_file:
+        Path("dqn_results").mkdir(parents=True, exist_ok=True)
+        with open("dqn_results/dqn_{}_json.json".format(env_name), "w") as json_file:
             json.dump(dqn_json, json_file)
 
         # After training is done, we save the final weights.
-        self.dqn.save_weights('dqn_{}_weights.h5'.format(env_name), overwrite=True)
+        self.dqn.save_weights('dqn_results/dqn_{}_weights.h5'.format(env_name), overwrite=True)
 
         # Finally, evaluate our algorithm for 5 episodes.
         self.dqn.test(self.env, nb_episodes=5, visualize=False)
@@ -115,11 +118,11 @@ class Player:
         """Load a model"""
 
         # Load the architecture
-        with open('dqn_{}_json.json'.format(env_name), 'r') as architecture_json:
+        with open('dqn_results/dqn_{}_json.json'.format(env_name), 'r') as architecture_json:
             dqn_json = json.load(architecture_json)
 
         self.model = model_from_json(dqn_json)
-        self.model.load_weights('dqn_{}_weights.h5'.format(env_name))
+        self.model.load_weights('dqn_results/dqn_{}_weights.h5'.format(env_name))
 
     def play(self, nb_episodes=5, render=False):
         """Let the agent play"""
