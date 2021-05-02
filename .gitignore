@@ -1,5 +1,4 @@
 # Created by .ignore support plugin (hsz.mobi)
-.gitignore
 .idea/
 neuron_poker.iml
 log/
@@ -29,3 +28,4 @@ Graph/
 /EquityCalculatorMontecarlo.pdb
 /EquityCalculatorMontecarlo.pyd
 /python37.dll
+dqn_results/

@@ -40,21 +40,21 @@ from tools.helper import init_logger
 """
 parallel_dqn_train is an external function that takes in model [dqn], game
 environment [env], and environment label [env_name] and facilitates the training
-loop. I had to take this function out of the class [SelfPlay] because the 
-implied [self] parameter was messing with the pool -.- 
+loop. I had to take this function out of the class [SelfPlay] because the
+implied [self] parameter was messing with the pool -.-
 
-If you want to allocate more threads to the training, adjust parameter 
+If you want to allocate more threads to the training, adjust parameter
 [num_par_agents] in the command_line_parser() function to the int that you want
 
 Default number is 5
 
 How much is 5? dunno
- 
+
 In theory, you should be able to train things faster
 
-In practice, I have no idea if this makes any meaningful improvements 
+In practice, I have no idea if this makes any meaningful improvements
 
-But hey it's a feature(TM) and it hasn't broken anything yet so I'm gonna leave 
+But hey it's a feature(TM) and it hasn't broken anything yet so I'm gonna leave
 it
 """
 
